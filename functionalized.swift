@@ -18,7 +18,10 @@ class MyViewController : UIViewController {
         let fontURL2 = Bundle.main.url(forResource: "PTN77F", withExtension: "ttf")
         CTFontManagerRegisterFontsForURL(fontURL2! as CFURL, CTFontManagerScope.process, nil)
         
-        let myCapsuleView = createLabel(fontSize: 48, valueText: "2.8", unitsText: .mi)
+        let textColor = UIColor(red: 0.0, green: 27/255, blue: 192/255, alpha: 1.0)
+        let backgroundColor = UIColor.yellow
+        
+        let myCapsuleView = createLabel(fontSize: 48, valueText: "2.8", unitsText: .mi, textColor: textColor, backgroundColor: backgroundColor)
         
         let capsuleViewX = (mainView.bounds.width / 2)  - (myCapsuleView.bounds.width / 2)
         let capsuleViewY = (mainView.bounds.height / 2) - (myCapsuleView.bounds.height / 2)
@@ -34,13 +37,13 @@ class MyViewController : UIViewController {
         case mi = "mi"
     }
     
-    func createLabel(fontSize: CGFloat, valueText: String, unitsText: Units) -> UIView {
+    func createLabel(fontSize: CGFloat, valueText: String, unitsText: Units, textColor: UIColor, backgroundColor: UIColor) -> UIView {
 
         let textLayer = CATextLayer()
         
         let unitsFont = UIFont(name: "PTSans-Narrow", size: fontSize * 0.75 )
         let valueFont = UIFont(name: "PTSans-NarrowBold", size: fontSize)
-        let textColor = UIColor(red: 0.0, green: 27/255, blue: 192/255, alpha: 1.0)
+        
         let valueAttrs = [NSAttributedString.Key.font : valueFont, NSAttributedString.Key.foregroundColor: textColor]
         
         let formattedValueStr = NSMutableAttributedString(string: valueText, attributes: valueAttrs as [NSAttributedString.Key : Any])
@@ -67,7 +70,7 @@ class MyViewController : UIViewController {
         capsule.frame = CGRect(x: 0, y: 0, width: capsuleWidth, height: capsuleHeight)
         
         capsule.cornerRadius = capsuleHeight / 2
-        capsule.backgroundColor = UIColor.yellow.cgColor
+        capsule.backgroundColor = backgroundColor.cgColor
         
         let capsuleView = UIView()
         capsuleView.layer.addSublayer(capsule)
