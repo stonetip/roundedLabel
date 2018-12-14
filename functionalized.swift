@@ -11,10 +11,7 @@ class MyViewController : UIViewController {
         let mainView = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 300))
         mainView.backgroundColor = UIColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1.0)
         
-        
         self.view = mainView
-        
-        
         
         let fontURL = Bundle.main.url(forResource: "PTN57F", withExtension: "ttf")
         CTFontManagerRegisterFontsForURL(fontURL! as CFURL, CTFontManagerScope.process, nil)
@@ -38,8 +35,7 @@ class MyViewController : UIViewController {
     }
     
     func createLabel(fontSize: CGFloat, valueText: String, unitsText: Units) -> UIView {
-        
-        
+
         let textLayer = CATextLayer()
         
         let unitsFont = UIFont(name: "PTSans-Narrow", size: fontSize * 0.75 )
